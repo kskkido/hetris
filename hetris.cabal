@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: bd7f186f25c5e3e3fd3368a200dfa877dfbbc2f62af0c12328a2a471d4d1e372
+-- hash: 473102cba0d7415fbb3ed0a575865b1af7416cb7e90e672a2d7ac72477ffe5be
 
 name:           hetris
 version:        0.1.0.0
@@ -25,27 +25,38 @@ source-repository head
   type: git
   location: https://github.com/githubuser/hetris
 
-library
-  exposed-modules:
-      Lib
-  other-modules:
-      Paths_hetris
-  hs-source-dirs:
-      src
-  build-depends:
-      base >=4.7 && <5
-  default-language: Haskell2010
-
 executable hetris-exe
   main-is: Main.hs
   other-modules:
+      Lib.Combinator
+      Models.Bag
+      Models.Block
+      Models.Board
+      Models.Cell
+      Models.Color
+      Models.Coordinate
+      Models.Frame
+      Models.Game
+      Models.Grid
+      Models.Matrix
+      Models.Piece
+      Models.Shape
+      Services.Game.Command
+      Services.Game.Frame
+      Views.Block
+      Views.Board
+      Views.Color
+      Views.Game
+      Views.Matrix
       Paths_hetris
   hs-source-dirs:
       app
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
-    , hetris
+    , gloss
+    , mtl
+    , random
   default-language: Haskell2010
 
 test-suite hetris-test
@@ -58,5 +69,4 @@ test-suite hetris-test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
-    , hetris
   default-language: Haskell2010
